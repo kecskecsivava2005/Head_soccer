@@ -1,25 +1,47 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
-public class timerű : MonoBehaviour
+public class Timer : MonoBehaviour
 {
-    public static Stopwatch timer = new Stopwatch();
-    private DateTime time = DateTime.Parse("2000.01.01. 00:02");
-    public Text text;
-    // Start is called before the first frame update
+    public TextMeshProUGUI timeText;
+    private float remainingTime = 180f;
+    private bool isRunning = false;
+
     void Start()
     {
-        timer.Reset(); 
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            timeText.text = FormatTime(remainingTime);
+            StartCoroutine(Countdown());
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Countdown()
     {
-        time -= timer.Elapsed;
+        isRunning = true;
+        while (remainingTime > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            remainingTime--;
+            timeText.text = FormatTime(remainingTime);
+        }
 
+        isRunning = false;
+        Stopped();
+    }
+
+    string FormatTime(float time)
+    {
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time % 60);
+        return string.Format("{0:0}:{1:00}", minutes, seconds);
+    }
+
+    void Stopped()
+    {
+        Debug.Log("Idő lejárt!");
+        timeText.text = "Az idő lejárt!";
     }
 }

@@ -25,15 +25,15 @@ public class CharacterSelector : MonoBehaviour
     public void NextCharacter(int player)
     {
         if (characters.Length == 0) return;
-        Debug.Log("Következõ karakter...");
+        Debug.Log("Kï¿½vetkezï¿½ karakter...");
         if (player == 1)
         {
-            player1Index = (player1Index + 1) % characters.Length;
+            player1Index = (player1Index + 2) % characters.Length;
             Debug.Log($"Karakter index: {player1Index} / {characters.Length}");
         }
         else if (player == 2)
         {
-            player2Index = (player2Index + 1) % characters.Length;
+            player2Index = (player2Index + 2) % characters.Length;
             Debug.Log($"Karakter index: {player2Index}");
         }
         UpdateCharacters();
@@ -45,11 +45,11 @@ public class CharacterSelector : MonoBehaviour
 
         if (player == 1)
         {
-            player1Index = (player1Index - 1 + characters.Length) % characters.Length;
+            player1Index = (player1Index - 2 + characters.Length) % characters.Length;
         }
         else if (player == 2)
         {
-            player2Index = (player2Index - 1 + characters.Length) % characters.Length;
+            player2Index = (player2Index - 2 + characters.Length) % characters.Length;
         }
         UpdateCharacters();
     }
