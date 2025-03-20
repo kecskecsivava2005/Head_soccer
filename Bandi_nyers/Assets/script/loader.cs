@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class loader : MonoBehaviour
 {
+    /*
     public SpriteRenderer player1Renderer;
     public SpriteRenderer player2Renderer;
     public Sprite[] characters; 
@@ -33,4 +34,5 @@ public class loader : MonoBehaviour
     {
         
     }
+    */
 }

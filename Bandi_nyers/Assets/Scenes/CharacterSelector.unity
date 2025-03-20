@@ -341,8 +341,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 352945013}
         m_TargetAssemblyTypeName: CharacterSelector, Assembly-CSharp
-        m_MethodName: NextCharacter
-        m_Mode: 3
+        m_MethodName: NextCharacterPlayer1
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -996,8 +996,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 352945013}
         m_TargetAssemblyTypeName: CharacterSelector, Assembly-CSharp
-        m_MethodName: PrevCharacter
-        m_Mode: 3
+        m_MethodName: PrevCharacterPlayer1
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1847,8 +1847,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 352945013}
         m_TargetAssemblyTypeName: CharacterSelector, Assembly-CSharp
-        m_MethodName: PrevCharacter
-        m_Mode: 3
+        m_MethodName: PrevCharacterPlayer2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2690,8 +2690,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 352945013}
         m_TargetAssemblyTypeName: CharacterSelector, Assembly-CSharp
-        m_MethodName: NextCharacter
-        m_Mode: 3
+        m_MethodName: NextCharacterPlayer2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

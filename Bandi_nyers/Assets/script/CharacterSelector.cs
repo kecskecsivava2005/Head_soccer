@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class CharacterSelector : MonoBehaviour
@@ -10,61 +7,88 @@ public class CharacterSelector : MonoBehaviour
     public SpriteRenderer player2Renderer;
     public Sprite[] characters;
 
-    private int player1Index = 0;
-    private int player2Index = 0;
+    private static int player1Index = 0;
+    private static int player2Index = 1;
+
+    private static CharacterSelector instance;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     void Start()
     {
-        
-
-        player1Index = PlayerPrefs.GetInt("Player1Character", 0);
-        player2Index = PlayerPrefs.GetInt("Player2Character", 0);
         UpdateCharacters();
     }
 
-    public void NextCharacter(int player)
+    public void NextCharacterPlayer1()
     {
-        if (characters.Length == 0) return;
-        Debug.Log("K�vetkez� karakter...");
-        if (player == 1)
+        if (player1Index == 0)
         {
-            player1Index = (player1Index + 2) % characters.Length;
-            Debug.Log($"Karakter index: {player1Index} / {characters.Length}");
+            player1Index = 2;
         }
-        else if (player == 2)
+        else
         {
-            player2Index = (player2Index + 2) % characters.Length;
-            Debug.Log($"Karakter index: {player2Index}");
+            player1Index = 0;
         }
+        UnityEngine.Debug.Log($"Player 1 következő karakter: {player1Index}");
         UpdateCharacters();
     }
 
-    public void PrevCharacter(int player)
+    public void NextCharacterPlayer2()
     {
-        if (characters.Length == 0) return;
+        if (player2Index == 1)
+        {
+            player2Index = 3;
+        }
+        else
+        {
+            player2Index = 1;
+        }
+        UnityEngine.Debug.Log($"Player 2 következő karakter: {player2Index}");
+        UpdateCharacters();
+    }
 
-        if (player == 1)
-        {
-            player1Index = (player1Index - 2 + characters.Length) % characters.Length;
-        }
-        else if (player == 2)
-        {
-            player2Index = (player2Index - 2 + characters.Length) % characters.Length;
-        }
+    public void PrevCharacterPlayer1()
+    {
+        player1Index = (player1Index == 2) ? 0 : 2;
+        UnityEngine.Debug.Log($"Player 1 előző karakter: {player1Index}");
+        UpdateCharacters();
+    }
+
+    public void PrevCharacterPlayer2()
+    {
+        player2Index = (player2Index == 3) ? 1 : 3;
+        UnityEngine.Debug.Log($"Player 2 előző karakter: {player2Index}");
         UpdateCharacters();
     }
 
     void UpdateCharacters()
     {
-        player1Renderer.sprite = characters[player1Index];
-        player2Renderer.sprite = characters[player2Index];
+        if (player1Renderer != null && player2Renderer != null && characters.Length >= 4)
+        {
+            player1Renderer.sprite = characters[player1Index];
+            player2Renderer.sprite = characters[player2Index];
+        }
     }
 
     public void StartGame()
     {
-        PlayerPrefs.SetInt("Player1Character", player1Index);
-        PlayerPrefs.SetInt("Player2Character", player2Index);
-        PlayerPrefs.Save();
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public static int[] GetIndex()
+    {
+        return new int[] { player1Index, player2Index };
     }
 }
